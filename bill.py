@@ -2,15 +2,20 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from constants import BASE_URL, BASE_URL_PDF
+from authors import get_author_ids
 
 
 class Bill:
-    def __init__(self, url):
+    def __init__(self, url: str):
         item = BASE_URL.format(other=url)
         res = requests.get(item)
         soup = BeautifulSoup(res.text, "html.parser")
 
-        self.title = soup.title.text.strip()
+        title = soup.title.text.strip()
+        title = re.search(
+            r".+ Congress - (?P<title>.+) - Senate of the Philippines", title
+        )
+        self.title = title.group("title")
         self.name = soup.find("div", class_="lis_doctitle").text.strip()
         pdf = soup.find("div", id="lis_download").find("a")["href"].strip()
         self.pdf = BASE_URL_PDF.format(other=pdf)
@@ -22,17 +27,29 @@ class Bill:
 
         find = re.compile(r"Filed on (.+) by (?P<name>.+)")
         author = soup.find(string=find).text.strip()
-        self.author = find.search(author).group("name")
+        author = find.search(author).group("name")
+        self.author = get_author_ids(author)
+
+        self.id = hash(self.title)
 
     def __repr__(self):
-        return self.name
+        return self.title
 
     def to_dict(self):
         return {
+            "id": self.id,
             "title": self.title,
             "name": self.name,
             "long_name": self.long_name,
             "pdf": self.pdf,
             "scope": self.scope,
-            "author": self.author,
         }
+
+    def to_author(self):
+        return [
+            {
+                "authors_id": author,
+                "bills_id": self.id,
+            }
+            for author in self.author
+        ]

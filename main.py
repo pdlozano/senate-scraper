@@ -1,3 +1,4 @@
+import multiprocessing
 import requests
 from bs4 import BeautifulSoup
 from constants import BASE_URL
@@ -9,8 +10,8 @@ from database import Database
 db = Database()
 
 
-# Get pages (310 pages)
-for page_number in range(1, 2):
+# Get Page
+def get_page(page_number: int):
     print(f"Getting page no. {page_number}")
     # Get Page
     url = BASE_URL.format(other=f"leg_sys.aspx?congress=18&type=bill&p={page_number}")
@@ -20,6 +21,7 @@ for page_number in range(1, 2):
     # Get all bills
     items = soup.find("div", class_="alight")
     bills = items.find_all("a")
+
     bills = [bill["href"] for bill in bills]
 
     # Save bills to database
@@ -27,4 +29,10 @@ for page_number in range(1, 2):
     db.insert_items(items=bills)
 
 
+# Get pages (310 pages)
+pool = multiprocessing.Pool()
+pool.map(get_page, range(1, 20))
+
+
+# Close the Database
 db.close()
