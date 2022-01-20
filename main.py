@@ -31,7 +31,7 @@ def get_page(page_number: int):
 if __name__ == "__main__":
     # Get pages (310 pages)
     pool = multiprocessing.Pool()
-    pool.map(get_page, range(1, 20))
+    pool.map(get_page, range(1, 311))
 
     # Close the Database
     db.close()
