@@ -7,53 +7,53 @@ def get_author_ids(names: str) -> List[int]:
     names = []
 
     for name in last_names:
-        if name == "Angara":
+        if "Angara".lower() in name.lower():
             names.append(1)
-        elif name == "Binay":
+        elif "Binay".lower() in name.lower():
             names.append(2)
-        elif name == "Cayetano":
+        elif "Cayetano".lower() in name.lower():
             names.append(3)
-        elif name == "De Lima":
+        elif "De Lima".lower() in name.lower():
             names.append(4)
-        elif name == "Dela Rosa":
+        elif "Dela Rosa".lower() in name.lower():
             names.append(5)
-        elif name == "Drilon":
+        elif "Drilon".lower() in name.lower():
             names.append(6)
-        elif name == "Gatchalian":
+        elif "Gatchalian".lower() in name.lower():
             names.append(7)
-        elif name == "Go":
+        elif "Go".lower() in name.lower():
             names.append(8)
-        elif name == "Gordon":
+        elif "Gordon".lower() in name.lower():
             names.append(9)
-        elif name == "Hontiveros":
+        elif "Hontiveros".lower() in name.lower():
             names.append(10)
-        elif name == "Lacson":
+        elif "Lacson".lower() in name.lower():
             names.append(11)
-        elif name == "Lapid":
+        elif "Lapid".lower() in name.lower():
             names.append(12)
-        elif name == "Marcos":
+        elif "Marcos".lower() in name.lower():
             names.append(13)
-        elif name == "Pacquiao":
+        elif "Pacquiao".lower() in name.lower():
             names.append(14)
-        elif name == "Pangilinan":
+        elif "Pangilinan".lower() in name.lower():
             names.append(15)
-        elif name == "Pimentel":
+        elif "Pimentel".lower() in name.lower():
             names.append(16)
-        elif name == "Poe":
+        elif "Poe".lower() in name.lower():
             names.append(17)
-        elif name == "Recto":
+        elif "Recto".lower() in name.lower():
             names.append(18)
-        elif name == "Revilla Jr.":
+        elif "Revilla Jr.".lower() in name.lower():
             names.append(19)
-        elif name == "Sotto III":
+        elif "Sotto III".lower() in name.lower():
             names.append(20)
-        elif name == "Tolentino":
+        elif "Tolentino".lower() in name.lower():
             names.append(21)
-        elif name == "Villanueva":
+        elif "Villanueva".lower() in name.lower():
             names.append(22)
-        elif name == "Villar":
+        elif "Villar".lower() in name.lower():
             names.append(23)
-        elif name == "Zubiri":
+        elif "Zubiri".lower() in name.lower():
             names.append(24)
 
     return names
