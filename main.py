@@ -5,7 +5,6 @@ from constants import BASE_URL
 from bill import Bill
 from database import Database
 
-
 # Initialize Database
 db = Database()
 
@@ -29,10 +28,10 @@ def get_page(page_number: int):
     db.insert_items(items=bills)
 
 
-# Get pages (310 pages)
-pool = multiprocessing.Pool()
-pool.map(get_page, range(1, 20))
+if __name__ == "__main__":
+    # Get pages (310 pages)
+    pool = multiprocessing.Pool()
+    pool.map(get_page, range(1, 20))
 
-
-# Close the Database
-db.close()
+    # Close the Database
+    db.close()
