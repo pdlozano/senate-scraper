@@ -20,6 +20,7 @@
 
 import sqlite3
 from bill import Bill
+from committee import Committee
 from typing import List
 from itertools import chain
 
@@ -27,6 +28,7 @@ from itertools import chain
 class Database:
     def __init__(self):
         self.__db = sqlite3.connect("data.sqlite")
+
         self.__db.execute(
             """
             CREATE TABLE IF NOT EXISTS bills (
@@ -35,7 +37,8 @@ class Database:
                 name TEXT NOT NULL,
                 long_name TEXT NOT NULL,
                 pdf TEXT NOT NULL,
-                scope TEXT NOT NULL
+                scope TEXT NOT NULL,
+                reading TEXT NOT NULL CHECK(reading IN ('First', 'Second', 'Third'))
             )
         """
         )
@@ -97,14 +100,15 @@ class Database:
         cur = self.__db.cursor()
         cur.executemany(
             """
-            INSERT OR IGNORE INTO bills (id, title, name, long_name, pdf, scope)
+            INSERT OR IGNORE INTO bills (id, title, name, long_name, pdf, scope, reading)
             VALUES (
                 :id,
                 :title,
                 :name,
                 :long_name,
                 :pdf,
-                :scope
+                :scope,
+                :reading
             )
         """,
             [item.to_dict() for item in items],

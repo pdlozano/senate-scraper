@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from constants import BASE_URL
 from bill import Bill
 from database import Database
+from itertools import chain
 
 # Initialize Database
 db = Database()
@@ -33,7 +34,7 @@ def get_page(page_number: int):
 if __name__ == "__main__":
     # Get pages (310 pages)
     pool = multiprocessing.Pool()
-    pool.map(get_page, range(8, 10))
+    pool.map(get_page, range(1, 311))
 
     # Close the Database
     db.close()
