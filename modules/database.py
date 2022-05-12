@@ -19,7 +19,7 @@
 """
 
 import sqlite3
-from bill import Bill
+from modules.bill import Bill
 from typing import List
 from itertools import chain
 
