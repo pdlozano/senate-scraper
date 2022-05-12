@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from constants import BASE_URL
 from modules.bill import Bill
 from modules.database import Database
-from itertools import chain
 
 # Initialize Database
 db = Database()

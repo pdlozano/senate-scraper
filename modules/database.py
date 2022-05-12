@@ -20,7 +20,6 @@
 
 import sqlite3
 from bill import Bill
-from committee import Committee
 from typing import List
 from itertools import chain
 

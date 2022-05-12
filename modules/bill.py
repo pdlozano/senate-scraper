@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 from constants import BASE_URL, BASE_URL_PDF
 from authors import get_author_ids
-from committee import Committee
 
 
 class Bill:
