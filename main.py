@@ -2,8 +2,8 @@ import multiprocessing
 import requests
 from bs4 import BeautifulSoup
 from constants import BASE_URL
-from bill import Bill
-from database import Database
+from modules.bill import Bill
+from modules.database import Database
 from itertools import chain
 
 # Initialize Database
